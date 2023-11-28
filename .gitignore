@@ -1,0 +1,16 @@
+# Dependency directories
+node_modules/
+
+# TypeScript compiled output
+dist/
+
+# Environment configuration files
+.env
+
+# Logs
+logs/
+
+# Others
+*.log
+*.tmp
+.DS_Store
