@@ -1,5 +1,6 @@
 import express from 'express';
 import productApp from './app/components/products';
+import userApp from './app/components/users';
 import errorHandler from './app/middleware/errorHandler';
 import session from 'express-session';
 import helmet from 'helmet';
@@ -9,6 +10,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import logger from './config/logger';
 import { Request, Response, NextFunction } from 'express';
+import cookieParser from 'cookie-parser';
 import { connectDB } from './config';
 
 dotenv.config();
@@ -40,8 +42,12 @@ app.use(limiter);
 app.use(morgan('combined'));
 app.use(helmet());
 app.use(express.json());
-app.use('/', productApp);
 app.use(errorHandler);
+app.use(cookieParser());
+
+// apps
+app.use('/', productApp);
+app.use('/', userApp);
 
 // You can also log requests by creating a middleware
 app.use((req, res, next) => {
